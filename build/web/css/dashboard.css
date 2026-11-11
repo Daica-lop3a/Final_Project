@@ -1,0 +1,835 @@
+/* =========================================================
+   SMARTWASTE - EXECUTIVE BENTO DASHBOARD SPECIFICATION
+   Design Language: Facebook Clean Minimalist (#EDF8F2, #FFFFFF, #00875A)
+   Architecture: High-Density Asymmetric Bento Grid & Real-time Command Center
+   ========================================================= */
+
+/* =========================================================
+   1. DASHBOARD CONTAINER & TRANSITIONS
+   ========================================================= */
+.dash-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =========================================================
+   2. EXECUTIVE COMMAND STRIP (WELCOME & LIVE TELEMETRY)
+   ========================================================= */
+.dash-command-strip {
+    background: #FFFFFF;
+    border: 1px solid #D1EBCF;
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.command-user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.command-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #DCF2E4;
+    color: #00875A;
+    font-size: 20px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+    border: 2px solid #D1EBCF;
+    flex-shrink: 0;
+}
+
+.command-title-group h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: #0A2E20;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.command-role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #EDF8F2;
+    color: #00875A;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid #D1EBCF;
+}
+
+.command-subtitle {
+    font-size: 13px;
+    color: #4A6B5D;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.command-telemetry-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #15803D;
+    background: #DCFCE7;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #BBF7D0;
+}
+
+.pulse-beacon {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #16A34A;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
+    animation: beaconPulse 2s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+.command-quick-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-cmd {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.btn-cmd-primary {
+    background: #00875A;
+    color: #FFFFFF;
+    border-color: #00875A;
+    box-shadow: 0 2px 6px rgba(0, 135, 90, 0.25);
+}
+
+.btn-cmd-primary:hover {
+    background: #006644;
+    border-color: #006644;
+    color: #FFFFFF;
+}
+
+.btn-cmd-secondary {
+    background: #FFFFFF;
+    color: #0A2E20;
+    border-color: #D1EBCF;
+}
+
+.btn-cmd-secondary:hover {
+    background: #DCF2E4;
+    border-color: #00875A;
+    color: #00875A;
+}
+
+/* =========================================================
+   3. EXECUTIVE KPI METRICS BAR (4 DISTINCT TILES)
+   ========================================================= */
+.dash-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.kpi-tile {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #D1EBCF;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 8px rgba(11, 110, 79, 0.05);
+    backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.kpi-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 135, 90, 0.12);
+    border-color: #00875A;
+}
+
+.kpi-tile-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.kpi-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #4A6B5D;
+}
+
+.kpi-icon-bubble {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.kpi-blue .kpi-icon-bubble { background: #DCF2E4; color: #00875A; }
+.kpi-teal .kpi-icon-bubble { background: #E6FFFA; color: #0D9488; }
+.kpi-amber .kpi-icon-bubble { background: #FEF3C7; color: #D97706; }
+.kpi-purple .kpi-icon-bubble { background: #EDE9FE; color: #7C3AED; }
+
+.kpi-number-wrap {
+    margin-top: 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.kpi-number {
+    font-size: 30px;
+    font-weight: 800;
+    color: #0A2E20;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.kpi-trend {
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.kpi-trend.positive { color: #16A34A; }
+.kpi-trend.warning { color: #D97706; }
+.kpi-trend.neutral { color: #4A6B5D; }
+
+.kpi-footer-subtext {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #4A6B5D;
+    border-top: 1px solid #EDF8F2;
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* =========================================================
+   4. ASYMMETRIC BENTO GRID (12 COLUMNS)
+   ========================================================= */
+.dash-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 18px;
+}
+
+.bento-col-12 { grid-column: span 12; }
+.bento-col-8 { grid-column: span 8; }
+.bento-col-7 { grid-column: span 7; }
+.bento-col-6 { grid-column: span 6; }
+.bento-col-5 { grid-column: span 5; }
+.bento-col-4 { grid-column: span 4; }
+
+.bento-card {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #D1EBCF;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(11, 110, 79, 0.05);
+    backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.bento-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #EDF8F2;
+    gap: 12px;
+}
+
+.bento-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bento-title-wrap i {
+    font-size: 18px;
+    color: #00875A;
+}
+
+.bento-title-wrap h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #0A2E20;
+}
+
+.bento-kicker {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #4A6B5D;
+    display: block;
+}
+
+.bento-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: #00875A;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bento-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   5. BENTO CARD: CAMPUS SMART NODE GOOGLE MAP HUB
+   ========================================================= */
+.dash-map-wrapper {
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid #D1EBCF;
+    background: #e5e3df;
+    overflow: hidden;
+    height: 310px;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+#dashboardMap {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.dash-map-layer-switch {
+    display: inline-flex;
+    background: #FFFFFF;
+    border: 1px solid #D1EBCF;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.dash-map-layer-btn {
+    border: none;
+    background: transparent;
+    padding: 4px 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #4A6B5D;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+}
+
+.dash-map-layer-btn:hover {
+    background: #EDF8F2;
+    color: #00875A;
+}
+
+.dash-map-layer-btn.active {
+    background: #00875A;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+/* Teardrop pins for Google Map inside Bento */
+.gmap-pin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.35));
+    transition: transform 0.15s ease;
+}
+
+.gmap-pin-container:hover {
+    transform: scale(1.18) translateY(-4px);
+}
+
+.gmap-pin-badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: grid;
+    place-items: center;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.gmap-pin-badge i {
+    transform: rotate(45deg);
+}
+
+.pin-green { background: #0F9D58; }
+.pin-yellow { background: #F4B400; }
+.pin-red { background: #EA4335; }
+.pin-gray { background: #5F6368; }
+
+/* Dashboard Leaflet InfoWindow */
+#dashboardMap .leaflet-popup-content-wrapper {
+    padding: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.22) !important;
+    overflow: hidden;
+    border: 1px solid #D1EBCF;
+}
+
+#dashboardMap .leaflet-popup-content {
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    width: 250px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.dash-popup-header {
+    background: #F2FAF1;
+    padding: 10px 14px;
+    border-bottom: 1px solid #D1EBCF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dash-popup-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #050505;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: monospace;
+}
+
+.dash-popup-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: white;
+}
+
+.dash-popup-body {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #3c4043;
+    background: #FFFFFF;
+}
+
+.dash-popup-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    color: #4A6B5D;
+}
+
+.dash-popup-row i {
+    width: 14px;
+    color: #00875A;
+}
+
+.dash-popup-progress {
+    margin: 8px 0 4px;
+    height: 6px;
+    background: #E2F2E5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dash-popup-fill {
+    height: 100%;
+    border-radius: 4px;
+}
+
+.dash-popup-actions {
+    padding: 8px 14px;
+    background: #EDF8F2;
+    border-top: 1px solid #D1EBCF;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dash-popup-btn {
+    font-size: 11px;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    background: #00875A;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dash-popup-btn:hover {
+    background: #006b47;
+}
+
+.radar-overlay-bottom {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border: 1px solid #D1EBCF;
+    border-radius: 6px;
+    padding: 10px 14px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.radar-legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    color: #4A6B5D;
+}
+
+.radar-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.radar-legend-item span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.radar-legend-item.green span { background: #16A34A; }
+.radar-legend-item.amber span { background: #D97706; }
+.radar-legend-item.red span { background: #DC2626; }
+
+/* =========================================================
+   6. BENTO CARD: CAPACITY UTILIZATION CONCENTRIC GAUGE
+   ========================================================= */
+.gauge-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 20px;
+}
+
+.gauge-svg-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.gauge-center-readout {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.gauge-pct {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0A2E20;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.gauge-sub {
+    font-size: 11px;
+    font-weight: 600;
+    color: #4A6B5D;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.gauge-breakdown-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gauge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 8px 12px;
+    background: #EDF8F2;
+    border-radius: 6px;
+    border: 1px solid #E2F2E5;
+}
+
+.gauge-row-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #143D2D;
+    font-weight: 600;
+}
+
+.gauge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.gauge-dot.normal { background: #00875A; }
+.gauge-dot.warning { background: #D97706; }
+.gauge-dot.critical { background: #DC2626; }
+
+.gauge-row-val {
+    font-weight: 800;
+    color: #0A2E20;
+    font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   7. BENTO CARD: LOGISTICS VELOCITY & DISPATCH STATUS
+   ========================================================= */
+.velocity-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+}
+
+.velocity-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.velocity-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #143D2D;
+}
+
+.velocity-track {
+    height: 8px;
+    background: #EDF8F2;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #E2F2E5;
+}
+
+.velocity-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.velocity-fill.pending { background: #D97706; }
+.velocity-fill.progress { background: #00875A; }
+.velocity-fill.completed { background: #16A34A; }
+
+/* =========================================================
+   8. BENTO CARD: TACTICAL QUICK ACTION DOCK
+   ========================================================= */
+.quick-dock-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    flex: 1;
+}
+
+.dock-tile {
+    background: #EDF8F2;
+    border: 1px solid #D1EBCF;
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #0A2E20;
+    transition: all 0.15s ease;
+}
+
+.dock-tile:hover {
+    background: #FFFFFF;
+    border-color: #00875A;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 135, 90, 0.12);
+}
+
+.dock-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    background: #FFFFFF;
+    color: #00875A;
+    border: 1px solid #D1EBCF;
+}
+
+.dock-tile:hover .dock-icon {
+    background: #00875A;
+    color: #FFFFFF;
+    border-color: #00875A;
+}
+
+.dock-info strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0A2E20;
+}
+
+.dock-info small {
+    display: block;
+    font-size: 11px;
+    color: #4A6B5D;
+    margin-top: 2px;
+}
+
+/* =========================================================
+   9. HOTSPOT & SLA COMMAND STRIPS
+   ========================================================= */
+.hotspot-banner {
+    background: #FFF5F5;
+    border: 1px solid #FED7D7;
+    border-left: 4px solid #DC2626;
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.hotspot-banner strong {
+    color: #991B1B;
+    font-size: 14px;
+}
+
+.hotspot-banner p {
+    margin: 3px 0 0;
+    font-size: 12.5px;
+    color: #7F1D1D;
+}
+
+.hotspot-btn {
+    background: #DC2626;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hotspot-btn:hover {
+    background: #B91C1C;
+    color: #FFFFFF;
+}
+
+/* =========================================================
+   10. RESPONSIVE MEDIA QUERIES
+   ========================================================= */
+@media (max-width: 1150px) {
+    .dash-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .bento-col-8, .bento-col-4, .bento-col-7, .bento-col-5 {
+        grid-column: span 12;
+    }
+}
+
+@media (max-width: 768px) {
+    .dash-command-strip {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .command-user-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .dash-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    .bento-col-6 {
+        grid-column: span 12;
+    }
+    .quick-dock-grid {
+        grid-template-columns: 1fr;
+    }
+}
