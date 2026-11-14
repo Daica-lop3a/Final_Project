@@ -18,7 +18,7 @@ const char* WIFI_SSID     = "ESP32_TEST";
 const char* WIFI_PASSWORD = "esp32test123";
 
 // Địa chỉ máy tính đang chạy Tomcat (IP mạng Wi-Fi hiện tại của máy tính: 10.223.183.173)
-const char* SERVER_URL    = "http://10.223.183.173:8080/SmartWaste/api/bin/update-fill";
+const char* SERVER_URL    = "http://10.137.142.173:8080/SmartWaste/api/bin/update-fill";
 
 // =========================================================================
 // 2. THÔNG SỐ THÙNG RÁC DEMO (MINI CAO 20CM, LÒNG THÙNG ~ 2.0L)
@@ -27,11 +27,11 @@ const char* SERVER_URL    = "http://10.223.183.173:8080/SmartWaste/api/bin/updat
 const char* BIN_ID        = "BIN-001";
 
 // Chiều cao lòng thùng rác mini tính bằng cm (từ cảm biến nắp xuống đáy thùng = 20.0 cm)
-// Khi khoảng cách >= 20.0 cm (thùng rỗng hoặc quét phòng trống) -> 0% (Trống hoàn toàn)
-const float BIN_DEPTH_CM  = 20.0;
+// Khi khoảng cách >= 150.0 cm (thùng rỗng hoặc quét phòng trống) -> 0% (Trống hoàn toàn)
+const float BIN_DEPTH_CM  = 15.0;
 
-// Khoảng cách mù tối thiểu của cảm biến siêu âm (~ 3.0 cm sát cảm biến -> 100% Đầy tràn)
-const float MIN_DIST_CM   = 3.0;
+// Khoảng cách mù tối thiểu của cảm biến siêu âm (~ 2.0 cm sát cảm biến -> 100% Đầy tràn)
+const float MIN_DIST_CM   = 2.0;
 
 // Chu kỳ gửi dữ liệu về Server (3000ms = 3 giây/lần cho demo mượt mà)
 const unsigned long SEND_INTERVAL_MS = 3000;
@@ -188,7 +188,10 @@ void loop() {
       Serial.println("---------------------------------------------");
       Serial.printf("[SENSOR] Khoang cach thuc te: %.1f cm | Muc rac tinh toan: %d%%\n", avgDistance, fillPercent);
 
-      // Ban du lieu ve Server
+      // In chuoi JSON ra Serial de co the dung USB Bridge khi khong co Wi-Fi
+      Serial.printf("{\"bin_id\":\"%s\",\"distance_cm\":%.1f,\"fill_level\":%d}\n", BIN_ID, avgDistance, fillPercent);
+
+      // Ban du lieu ve Server qua Wi-Fi
       sendDataToSmartWaste(fillPercent, avgDistance);
     } else {
       Serial.println("[SENSOR WARNING] Khong doc duoc cam bien. Kiem tra lai 4 day noi (VCC 5V, GND, TRIG GPIO5, ECHO GPIO18)!");

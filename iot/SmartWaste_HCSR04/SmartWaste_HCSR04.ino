@@ -16,10 +16,10 @@ const char* BIN_ID = "BIN-001";
 
 // Total height of the waste bin in centimeters (sensor to bottom)
 // Adjust this value according to your demo trash bin depth
-const float BIN_DEPTH_CM = 40.0;
+const float BIN_DEPTH_CM = 20.0;
 
 // Minimum blind-spot distance for HC-SR04 (usually 3 - 4 cm)
-const float MIN_DISTANCE_CM = 4.0;
+const float MIN_DISTANCE_CM = 2.0;
 
 void setup() {
   // Initialize Serial communication at 9600 baud rate

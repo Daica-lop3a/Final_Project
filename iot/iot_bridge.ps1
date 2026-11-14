@@ -6,7 +6,7 @@
 
 param (
     [string]$Port = "",
-    [int]$BaudRate = 9600,
+    [int]$BaudRate = 115200,
     [string]$ServerUrl = "http://localhost:8080/SmartWaste/api/bin/update-fill"
 )
 
